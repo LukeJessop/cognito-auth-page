@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    button {
+        color: white;
+        border: none;
+        background-color: #ff9100;
+        box-shadow: 0px 0px 3px black;
+        transition: 500ms;
+        &:hover{
+            transform: scale(100.9%);
+            box-shadow: 0px 0px 4px black;
+            transition: 500ms;
+            cursor: pointer;
+        }
+    }
+}
