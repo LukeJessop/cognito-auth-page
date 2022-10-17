@@ -1,12 +1,19 @@
-import styles from '../../SCSS/modules/ui-component-modules/input.module.scss'
+import { useState } from "react";
+import styles from "../../SCSS/modules/ui-component-modules/input.module.scss";
 
 function Input(props) {
-    return (
-        <div className={styles.container}>
-            <span>{props.title}</span>
-            <input/>
-        </div>
-    )
+  const [valid, setValid] = useState(true);
+  return (
+    <div className={styles.container}>
+      <p>{props.title}:</p>
+      <input
+        placeholder={props.title}
+        className={valid ? styles.input : styles.input__invalid}
+        onClick={() => setValid(true)}
+        onBlur={(e) => (e.target.value !== "" ? null : setValid(false))}
+      ></input>
+    </div>
+  );
 }
 
-export default Input
+export default Input;

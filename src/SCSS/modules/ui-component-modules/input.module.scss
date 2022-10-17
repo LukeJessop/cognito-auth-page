@@ -3,7 +3,28 @@
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 10px;
-    input {
+    .input {
+        border-radius: 3px;
+        border: 1px solid rgb(56, 56, 56);
+        transition: 500ms;
         height: 35px;
+        &:focus{
+            background-color: #f98d0029;
+            border: 1px solid #573200;
+            transform: scale(103%);
+            transition: 500ms;
+        }
+        &__invalid {
+            height: 35px;
+            background-color: #f9000029;
+            border: 1px solid #570000;
+            animation: transform 500ms linear 1 ;
+        }
     }
+}
+@keyframes transform {
+    0% {transform: translateX(3px)}
+    25% {transform: translateX(-2px)}
+    50% {transform: translateX(2px)}
+    100% {transform: translateX(0px)}
 }
