@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import ExploroLogo from './SCSS/assets/ExploroLogo.svg'
+
+import Login from "./components/Login";
+import Register from "./components/Register";
+import ForgotPassword from "./components/ForgotPassword";
+
+import { useState } from "react";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("login");
+
+  const switchPageTo = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img src={ExploroLogo} alt='exploro-logo' width={'80%'}/>
+      <Login switchPageTo={switchPageTo} />
     </div>
   );
 }
