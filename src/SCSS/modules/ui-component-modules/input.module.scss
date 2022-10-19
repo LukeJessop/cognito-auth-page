@@ -3,15 +3,15 @@
     flex-direction: column;
     margin-top: 5px;
     margin-bottom: 5px;
-    p {
-        margin: 0px;
-        margin-top: 10px;
-    }
     .input {
         border-radius: 3px;
         border: 1px solid rgb(56, 56, 56);
         transition: 500ms;
         height: 35px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 20px;
         &:focus{
             background-color: #f98d0029;
             border: 1px solid #573200;
@@ -30,10 +30,12 @@
             }
         }
         &__invalid {
+            margin-top: 5px;
+            margin-bottom: 5px;
             border-radius: 3px;
             height: 35px;
             background-color: #f9000029;
-            border: 1px solid #570000;
+            border: 1px solid #a20000;
             animation: transform 300ms linear 1 ;
             &__phone{
                 margin-left: 10px;
@@ -48,6 +50,7 @@
         }
     }
     .phone{
+        margin-top: 10px;
         display: flex;
         align-items: center;
         .dropdown{
@@ -55,6 +58,16 @@
             border: 1px solid rgb(56, 56, 56);
             border-radius: 3px;
             cursor: pointer;
+        }
+    }
+    h5 {
+        margin: 0px;
+        margin-top: 8px;
+    }
+    ul {
+        color: red;
+        .accepted {
+            color: green;
         }
     }
 }
