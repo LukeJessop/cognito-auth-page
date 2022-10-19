@@ -47,6 +47,7 @@ function Register() {
         value={e.value}
         setStateValue={e.setValue}
         doPasswordMatch={doPasswordMatch}
+        page={'Register'}
       >
         {e.name}
       </Input>

@@ -27,6 +27,7 @@ function Login(props) {
         isSubmitted={submitted}
         value={e.value}
         setStateValue={e.setValue}
+        page={"Login"}
       >
         {e.name}
       </Input>
