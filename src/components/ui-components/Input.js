@@ -16,30 +16,43 @@ function Input(props) {
   useEffect(() => {
     if (props.isSubmitted) {
       if (!props.value) {
+        props.setAllInputsValid(false);
         setValid(false);
       }
       if (props.children === "Phone Number") {
         if (props.value.includes("_")) {
+          props.setAllInputsValid(false);
           setValid(false);
         }
       }
-      if (props.page === 'Register' && props.children === "Password" || props.children === "Confirm Password") {
+      if (
+        (props.page === "Register" && props.children === "Password") ||
+        props.children === "Confirm Password"
+      ) {
         if (props.doPasswordMatch && props.value !== "") {
-          if(props.children === 'Password' && validPassword){
-            setValid(true)
-          }else if(props.children !=='Password'){
-            setValid(true)
-          }else{
+          if (props.children === "Password" && validPassword) {
+            props.setAllInputsValid(true);
+            setValid(true);
+          } else if (props.children !== "Password") {
+            props.setAllInputsValid(true);
+            setValid(true);
+          } else {
+            props.setAllInputsValid(false);
             setValid(false);
           }
         } else {
+          props.setAllInputsValid(false);
           setValid(false);
         }
       }
       if (props.children === "Email") {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(props.value)) {
+        if (
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(props.value)
+        ) {
+          props.setAllInputsValid(true);
           setValid(true);
-        }else{
+        } else {
+          props.setAllInputsValid(false);
           setValid(false);
         }
       }
@@ -47,12 +60,25 @@ function Input(props) {
   }, [props.isSubmitted, props.doPasswordMatch]);
 
   useEffect(() => {
-    if (props.page === 'Register' && uCase && lCase && specialChar && num && validLength) {
+    if (
+      props.page === "Register" &&
+      uCase &&
+      lCase &&
+      specialChar &&
+      num &&
+      validLength
+    ) {
       setValidPassword(true);
     } else {
       setValidPassword(false);
     }
   }, [uCase, lCase, specialChar, num, validLength]);
+
+  useEffect(() => {
+    if (props.invalidInfo) {
+      setValid(false);
+    }
+  }, [props.invalidInfo]);
 
   const passwordAcceptance = (password) => {
     password.toLowerCase() != password ? setUCase(true) : setUCase(false);
@@ -62,7 +88,6 @@ function Input(props) {
       ? setSpecialChar(true)
       : setSpecialChar(false);
     password.search(/[\d]/g) >= 0 ? setNum(true) : setNum(false);
-    
   };
 
   return (
@@ -110,8 +135,13 @@ function Input(props) {
                 passwordAcceptance(e.target.value);
               }
             }}
+            onFocus={() => {
+              setValid(true);
+              props.setSubmitted(false);
+            }}
             onClick={() => {
               setValid(true);
+              props.setInvalidInfo(false)
               props.setSubmitted(false);
             }}
           ></input>
